@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/jammy64"
+
+  # Публічна мережа (отримає IP від вашої мережі)
+  config.vm.network "public_network"
+
+  # Провіжинінг
+  config.vm.provision "shell", inline: <<-SHELL
+    apt update
+    apt install -y nginx
+
+    # Міняємо порт з 80 на 82
+    sed -i 's/listen 80 default_server;/listen 82 default_server;/' /etc/nginx/sites-available/default
+    sed -i 's/listen \\[::\\]:80 default_server;/listen [::]:82 default_server;/' /etc/nginx/sites-available/default
+
+    systemctl restart nginx
+    systemctl enable nginx
+  SHELL
+
+end
