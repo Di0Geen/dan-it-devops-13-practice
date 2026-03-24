@@ -1,0 +1,61 @@
+(venv) arhont@MacBook-Pro-Mihajlo Src % python test_requests.py
+
+==================================================
+GET all
+STATUS: 200
+[]
+
+==================================================
+POST 1
+STATUS: 201
+{'age': 20, 'first_name': 'Ivan', 'id': 1, 'last_name': 'Petrenko'}
+
+==================================================
+POST 2
+STATUS: 201
+{'age': 21, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}
+
+==================================================
+POST 3
+STATUS: 201
+{'age': 22, 'first_name': 'Mykhailo', 'id': 3, 'last_name': 'Kovalchuk'}
+
+==================================================
+GET all
+STATUS: 200
+[{'age': 20, 'first_name': 'Ivan', 'id': 1, 'last_name': 'Petrenko'}, {'age': 21, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}, {'age': 22, 'first_name': 'Mykhailo', 'id': 3, 'last_name': 'Kovalchuk'}]
+
+==================================================
+PATCH
+STATUS: 200
+{'age': 30, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}
+
+==================================================
+GET second
+STATUS: 200
+{'age': 30, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}
+
+==================================================
+PUT
+STATUS: 200
+{'age': 35, 'first_name': 'Misha', 'id': 3, 'last_name': 'Bondarenko'}
+
+==================================================
+GET third
+STATUS: 200
+{'age': 35, 'first_name': 'Misha', 'id': 3, 'last_name': 'Bondarenko'}
+
+==================================================
+GET all
+STATUS: 200
+[{'age': 20, 'first_name': 'Ivan', 'id': 1, 'last_name': 'Petrenko'}, {'age': 30, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}, {'age': 35, 'first_name': 'Misha', 'id': 3, 'last_name': 'Bondarenko'}]
+
+==================================================
+DELETE
+STATUS: 200
+{'message': 'Deleted student 1'}
+
+==================================================
+GET all
+STATUS: 200
+[{'age': 30, 'first_name': 'Olena', 'id': 2, 'last_name': 'Shevchenko'}, {'age': 35, 'first_name': 'Misha', 'id': 3, 'last_name': 'Bondarenko'}]
