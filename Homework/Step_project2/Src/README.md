@@ -1,1 +1,1 @@
-# forStep2
+# Step Project 2 — Jenkins CI/CD with Vagrant, Docker and Docker Hub
