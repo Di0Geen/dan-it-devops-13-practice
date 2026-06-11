@@ -1,0 +1,9 @@
+cat > Homework/Homework19/.gitignore << 'EOF'
+.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+crash.log
+crash.*.log
+EOF
