@@ -1,0 +1,15 @@
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/crash.log
+**/crash.*.log
+
+# macOS
+.DS_Store
+
+# SSH keys
+*.pem
+*.key
+homework21
+homework21.pub
