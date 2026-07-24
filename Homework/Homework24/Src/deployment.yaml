@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-random
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-random
+  template:
+    metadata:
+      labels:
+        app: python-random
+    spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
+      containers:
+        - name: python-random
+          image: di0geen/homework24:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
