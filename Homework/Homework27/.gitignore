@@ -1,0 +1,8 @@
+# Telegram secret
+alertmanager/secrets/telegram_bot_token
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store

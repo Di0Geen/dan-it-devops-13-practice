@@ -1,0 +1,54 @@
+groups:
+  - name: system-alerts
+    rules:
+      - alert: LowDiskSpace
+        expr: |
+          (
+            100 *
+            node_filesystem_avail_bytes{
+              fstype!~"tmpfs|overlay|squashfs|nsfs"
+            }
+            /
+            node_filesystem_size_bytes{
+              fstype!~"tmpfs|overlay|squashfs|nsfs"
+            }
+            < 15
+          )
+          and on (instance, device, mountpoint)
+          node_filesystem_readonly == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Залишилося менше 15% вільного місця"
+          description: >-
+            На {{ $labels.instance }}, розділ {{ $labels.mountpoint }},
+            залишилося {{ printf "%.2f" $value }}% вільного місця.
+
+      - alert: HighCPUUsage
+        expr: |
+          100 -
+          (
+            avg by (instance) (
+              rate(node_cpu_seconds_total{mode="idle"}[5m])
+            ) * 100
+          ) > 80
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Завантаженість CPU перевищила 80%"
+          description: >-
+            На {{ $labels.instance }} завантаженість CPU становить
+            {{ printf "%.2f" $value }}%.
+
+      - alert: TargetDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus target недоступний"
+          description: >-
+            Target {{ $labels.instance }} із job {{ $labels.job }}
+            недоступний понад одну хвилину.
